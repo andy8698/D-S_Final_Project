@@ -8,28 +8,19 @@
  <!-- CSS -->
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
  <link href="css/site.css" rel="stylesheet" type="text/css">
-  
-  <title>About Me</title>
+
+  <title>Referee</title>
 
   <script src="https://unpkg.com/vue@next"></script>
-
-  <!-- CDN example (unpkg) -->
-  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 </head>
 <body>
 
   <div class="container">
     <header>
-<<<<<<< Updated upstream:app/public/about_me.html
-        <img src="img/Kelley_School_Logo.jpg" alt="logo" width="200" height="100"/>
-        <span id="title">&nbsp;HTML Review Assignment#1</span> 
-=======
         <img src="img/referee_state_association_logo.png" alt="logo" width="600">
-        <!--https://www.soccerindiana.org/assets/58/6/referee_state_association_logo.png-->
-
->>>>>>> Stashed changes:app/public/Assignor.html
-    </header>
+        <!--https://www.soccerindiana.org/assets/58/6/referee_state_association_logo.png-->    
+      </header>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -42,37 +33,25 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="about_me.html">About Me</a>
+              <a class="nav-link" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="book_table.html">Book Table</a>
+              <a class="nav-link active" aria-current="page" href="Referee.html">Referee</a>
             </li>
           </ul>
         </div>
-      </div>        
+      </div>                 
     </nav>
     
     <main class="row">
- 
-      <div v-if="person">
-        <ul id="random" style="list-style-type:none;">     
-          <li><a v-bind:href="person.picture.large" target="_blank"><img v-bind:src="person.picture.large"/><cite>{{ person.picture.large }}</cite></a></li>
-          <li>Name: {{ person.name.first }} {{ person.name.last }}</li>
-          <li>Country of Origin: {{ person.location.country }} </li>
-          <li>Birthdate: {{ prettyBirthday }}</li>
-          <li>Age: {{ person.dob.age }}</li>
-          <li>Email Address: <a v-bind:href="'mailto:'+person.email">{{ person.email }}</li>
-        </ul>
-      </div>
+        <h1> Welcome to ISRA!</h1>
 
-      <form class="Reload" v-on:submit.prevent="fetchUserData">
-        <button type="submit">Reload</button>
-      </form>
+        <a href="https://www.soccerindiana.org/assets/58/6/mainfckeditordimension/sharp.jpg" target="_blank"><img src="img/live_with_goals.jpg" alt="Live with Goals" width="400"></a>
 
     </main>
 
     <footer>
-        <span>Copyright© 2021 MSIS Red Cohort</span>
+        <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
     </footer>
     
   </div>
@@ -80,9 +59,7 @@
   <!--  Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-  <script src="js/randomuser.js"></script>
-
-  <script>dayjs().format()</script>
+  <script src="js/index.js"></script>
 
 </body>
 </html>

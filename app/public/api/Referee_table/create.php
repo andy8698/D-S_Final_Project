@@ -17,17 +17,16 @@ require("class/DbConnection.php");
 $db = DbConnection::getConnection();
 
 $stmt = $db->prepare(
-    'INSERT INTO book_table (Title, Author, Year_Published, Publisher, Page_Count, MSRP)
-    VALUES (?, ?, ?, ?, ?, ?)'
+    'INSERT INTO Referee_table (RefereeID, Name, Age, Grade, Skill)
+    VALUES (?, ?, ?, ?, ?)'
 );
 
 $stmt->execute([
-        $_POST['Title'],
-        $_POST['Author'],
-        $_POST['Year_Published'],
-        $_POST['Publisher'],
-        $_POST['Page_Count'],
-        $_POST['MSRP']
+        $_POST['RefereeID'],
+        $_POST['Name'],
+        $_POST['Age'],
+        $_POST['Grade'],
+        $_POST['Skill']
     ]);
 
 header('HTTP/1.1 303 See Other');

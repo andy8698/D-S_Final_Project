@@ -5,8 +5,8 @@ const SomeApp = {
         selectedStudent: null,
         offers: [],
         selectedTable: null,
-        book_tables: [],
-        book_form: {}
+        Referee_tables: [],
+        Referee_form: {}
       }
     },
     computed: {},
@@ -29,20 +29,20 @@ const SomeApp = {
         },
 
         
-        selectTable(t) {
-            if (t == this.selectedTable) {
+        selectReferee(t) {
+            if (t == this.selectedReferee) {
                 return;
             }
-            this.selectedTable = t;
-            this.book_tables = [];
-            this.fetchTableData(this.selectedTable);
+            this.selectedReferee = t;
+            this.Referee_tables = [];
+            this.fetchTableData(this.selectedReferee);
         },
         fetchTableData() {
-            fetch('/api/book_table/')
+            fetch('/api/Referee_table/')
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                this.book_tables = responseJson;
+                this.Referee_tables = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
@@ -75,10 +75,10 @@ const SomeApp = {
                 console.error(error);
             });
         },
-        postNewBook(evt) {
+        postNewReferee(evt) {
             console.log("Posting!", this.book_form);
 
-            fetch('api/book_table/create.php', {
+            fetch('api/Referee_table/create.php', {
                 method:'POST',
                 body: JSON.stringify(this.book_form),
                 headers: {
@@ -88,14 +88,14 @@ const SomeApp = {
             .then( response => response.json() )
             .then( json => {
                 console.log("Returned from post:", json);
-                this.book_tables = json;
-                this.book_form = {};
+                this.Referee_tables = json;
+                this.Referee_form = {};
             });
         }
     },
     created() {
         this.fetchStudentData();
-        this.fetchTableData();
+        this.fetchRefereeData();
     }
   
   }
