@@ -64,6 +64,14 @@ select{
     margin-right: 5px;
 }
 
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
 #submit:hover,#back:hover {
     background-color: rgb(168, 165, 165)
 }
