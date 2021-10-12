@@ -33,38 +33,6 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Referee.html">Referee</a>
-            </li>
-          </ul>
-        </div>
-      </div>                 
-    </nav>
-    
-    <main class="row">
- 
-      <div v-if="person">
-        <ul id="random" style="list-style-type:none;">     
-          <li><a v-bind:href="person.picture.large" target="_blank"><img v-bind:src="person.picture.large"/><cite>{{ person.picture.large }}</cite></a></li>
-          <li>Name: {{ person.name.first }} {{ person.name.last }}</li>
-          <li>Country of Origin: {{ person.location.country }} </li>
-          <li>Birthdate: {{ prettyBirthday }}</li>
-          <li>Age: {{ person.dob.age }}</li>
-          <li>Email Address: <a v-bind:href="'mailto:'+person.email">{{ person.email }}</li>
-        </ul>
-      </div>
-
-      <form class="Reload" v-on:submit.prevent="fetchUserData">
-        <button type="submit">Reload</button>
-      </form>
-
-    </main>
-
-    <footer>
-        <span>Copyright© 2021 MSIS Red Cohort</span>
-
               <a class="nav-link active" aria-current="page" href="assignor.html">Assignor View</a>
             </li>
             <li class="nav-item">
@@ -84,7 +52,7 @@
     <main class="row">
         <h1> Upcoming Games</h1>
 
-    </main>
+    
 
     <table id="bookTable" class="bookTable" v-for="offer in offers">
       <thead>
@@ -118,9 +86,7 @@
       </tbody>
     </table>
 
-    <div>
-
-    </div>
+  </main>
 
     <footer>
         <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
