@@ -35,9 +35,9 @@ const SomeApp = {
             }
             this.selectedReferee = t;
             this.Referee_tables = [];
-            this.fetchTableData(this.selectedReferee);
+            this.fetchRefereeData(this.selectedReferee);
         },
-        fetchTableData() {
+        fetchRefereeData() {
             fetch('/api/Referee_table/')
             .then( response => response.json() )
             .then( (responseJson) => {
