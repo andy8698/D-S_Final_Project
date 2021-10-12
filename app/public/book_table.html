@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <!-- CSS -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <link href="css/site.css" rel="stylesheet" type="text/css">
+ 
+
+  <title>Books</title>
+  
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <header>
+        <img src="img/Kelley_School_Logo.jpg" alt="logo" width="200" height="100"/>
+        <span id="title">&nbsp;HTML Review Assignment#1</span>
+    </header>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about_me.html">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="book_table.html">Book Table</a>
+            </li>
+          </ul>
+        </div>
+      </div>                
+    </nav>
+    
+    <main class="row">
+      
+        <div id="offerApp" class="container">  
+          <table class="table table-bordered table-hover table-striped table-condensed" id="table_form">
+                <thead id="table_head">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author(s)</th>
+                        <th>Year Published</th>
+                        <th>Publisher</th>
+                        <th>Page Count</th>
+                        <th>MSRP</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                  <tr v-for="book_table in book_tables">
+                    <td>{{ book_table.Title }}</td>
+                    <td>{{ book_table.Author }}</td>
+                    <td>{{ book_table.Year_Published }}</td>
+                    <td>{{ book_table.Publisher }}</td>
+                    <td>{{ book_table.Page_Count }}</td>
+                    <td>{{ prettyDollar(book_table.MSRP) }}</td>
+                  </tr>
+                </tbody>
+            </table>
+
+          <form v-on:submit.prevent="postNewBook" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
+            <div class="mb-3">
+              <label for="Title" class="form-label">Title:</label>
+              <input type="text" v-model="book_form.Title" class="form-control" id="Title">
+            </div>
+            <div class="mb-3">
+              <label for="Author" class="form-label">Author:</label>
+              <input type="text" v-model="book_form.Author" class="form-control" id="Author">
+            </div>
+            <div class="mb-3">
+              <label for="Year_Published" class="form-label">Year Published:</label>
+              <input type="number" v-model="book_form.Year_Published" class="form-control" id="Year_Published">
+            </div>
+            <div class="mb-3">
+              <label for="Publisher" class="form-label">Publisher:</label>
+              <input type="text" v-model="book_form.Publisher" class="form-control" id="Publisher">
+            </div>
+            <div class="mb-3">
+              <label for="Page_Count" class="form-label">Page Count:</label>
+              <input type="number" v-model="book_form.Page_Count" class="form-control" id="Page_Count">
+            </div>
+            <div class="mb-3">
+              <label for="MSRP" class="form-label">MSRP:</label>
+              <input type="text" v-model="book_form.MSRP" class="form-control" id="MSRP">
+            </div>
+            <button type="submit" class="btn btn-light">Submit</button>
+          </form>
+        </div>
+    </main>
+
+
+
+    <footer>
+        <span>Copyright© 2021 MSIS Red Cohort</span>
+    </footer>
+    
+  </div>
+
+  <!--  Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <script src="js/index.js"></script>
+
+  <script src="js/tablesort.min.js"></script>
+  
+  <script>
+    // Tablesort plug in from https://github.com/tristen/tablesort //
+    new Tablesort(document.getElementById('table_form'));
+  </script>
+
+</body>
+</html>

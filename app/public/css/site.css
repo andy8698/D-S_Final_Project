@@ -1,0 +1,129 @@
+body {
+    font-family: sans-serif;
+}
+
+header {
+    background-color: darkred;
+}
+
+nav {
+    background-color: gainsboro;
+    padding: 5px;
+    margin-bottom: 20px;    
+}
+
+#title {
+    font-size: xx-large;
+    color: white;
+    font-weight: bold;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
+q {
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    background-color: darkred;
+    color: white;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+form {
+    text-align: center;
+    background-color:darkred;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+}
+input{
+    margin: 5px;
+    color: black;
+    height: 27px;
+    border-radius: 5px;
+}
+select{
+    margin: 10px;
+    color: black;
+    height: 27px;
+    border-radius: 5px;
+}
+.button{
+    text-align: end;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#submit:hover,#back:hover {
+    background-color: rgb(168, 165, 165)
+}
+    
+.con{
+    border: black solid 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+.project{
+    border: black solid 1px;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    
+}
+fieldset{
+            margin-bottom: 10px;
+            
+}
+
+/* table sort */
+
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}
