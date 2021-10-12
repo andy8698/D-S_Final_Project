@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-LABEL maintainer="Seung Ho Hyun"
+LABEL maintainer="Team 33"
 
 RUN docker-php-ext-install pdo_mysql
 
