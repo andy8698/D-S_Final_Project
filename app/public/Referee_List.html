@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <!-- CSS -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <link href="css/site.css" rel="stylesheet" type="text/css">
+
+  <title>Referee List</title>
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <header>
+        <img src="img/referee_state_association_logo.png" alt="logo" width="600">
+        <!--https://www.soccerindiana.org/assets/58/6/referee_state_association_logo.png-->
+    </header>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Assignor.html">Assignor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Referee.html">Referee</a>
+            </li>
+          </ul>
+        </div>
+      </div>                 
+    </nav>
+    
+    <main class="row">
+        <div id="offerApp" class="container">  
+            <table class="table table-bordered table-hover table-striped table-condensed" id="refereeForm">
+                  <thead id="table_head">
+                      <tr>
+                          <th>Name</th>
+                          <th>Age</th>
+                          <th>Grade</th>
+                          <th>Skill</th>
+                      </tr>
+                  </thead>
+                  
+                  <tbody>
+                    <tr v-for="Referee_table in Referee_tables">
+                      <td>{{ Referee_table.Name }}</td>
+                      <td>{{ Referee_table.Age }}</td>
+                      <td>{{ Referee_table.Grade }}</td>
+                      <td>{{ Referee_table.Skill }}</td>
+                    </tr>
+                  </tbody>
+              </table>
+  
+            <form v-on:submit.prevent="postNewReferee" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
+              <div class="mb-3">
+                <label for="Name" class="form-label">Name:</label>
+                <input type="text" v-model="Referee_form.Name" class="form-control" id="Name">
+              </div>
+              <div class="mb-3">
+                <label for="Age" class="form-label">Age:</label>
+                <input type="number" v-model="Referee_form.Age" class="form-control" id="Age">
+              </div>
+              <div class="mb-3">
+                <label for="Grade" class="form-label">Grade:</label>
+                <input type="number" v-model="Referee_form.Grade" class="form-control" id="Grade">
+              </div>
+              <div class="mb-3">
+                <label for="Skill" class="form-label">Skill:</label>
+                <input type="text" v-model="Referee_form.Skill" class="form-control" id="Skill">
+              </div>
+              <button type="submit" class="btn btn-light">Submit</button>
+            </form>
+          </div>
+    </main>
+
+    <footer>
+        <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
+    </footer>
+    
+  </div>
+
+  <!--  Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <script src="js/index.js"></script>
+
+  <script src="js/tablesort.min.js"></script>
+  
+  <script>
+    // Tablesort plug in from https://github.com/tristen/tablesort //
+    new Tablesort(document.getElementById('table_form'));
+  </script>
+
+</body>
+</html>
