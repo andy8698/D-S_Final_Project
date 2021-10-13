@@ -76,11 +76,11 @@ const SomeApp = {
             });
         },
         postNewReferee(evt) {
-            console.log("Posting!", this.book_form);
+            console.log("Posting!", this.Referee_form);
 
             fetch('api/Referee_table/create.php', {
                 method:'POST',
-                body: JSON.stringify(this.book_form),
+                body: JSON.stringify(this.Referee_form),
                 headers: {
                     "Content-Type": "application/json; charset=utf-8"
                 }

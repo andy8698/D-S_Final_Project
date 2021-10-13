@@ -83,7 +83,7 @@
               </div>
               <div class="mb-3">
                 <label for="Skill" class="form-label">Skill:</label>
-                <input type="text" v-model="Referee_form.Skill" class="form-control" id="Skill">
+                <input type="number" v-model="Referee_form.Skill" class="form-control" id="Skill">
               </div>
               <button type="submit" class="btn btn-light">Submit</button>
             </form>
@@ -105,7 +105,7 @@
   
   <script>
     // Tablesort plug in from https://github.com/tristen/tablesort //
-    new Tablesort(document.getElementById('table_form'));
+    new Tablesort(document.getElementById('refereeForm'));
   </script>
 
 </body>
