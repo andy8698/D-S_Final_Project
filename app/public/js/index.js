@@ -94,7 +94,6 @@ const SomeApp = {
         }
     },
     created() {
-        this.fetchStudentData();
         this.fetchRefereeData();
     }
   
