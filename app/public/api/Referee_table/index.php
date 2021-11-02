@@ -8,11 +8,14 @@ $db = DbConnection::getConnection();
 $sql = 'SELECT * FROM Referee_table';
 $vars = [];
 
-if (isset($_GET['Referee_table'])) {
+if (isset($_GET['Game'])) {
   // This is an example of a parameterized query
-  $sql = 'SELECT * FROM Referee_table';
+  $sql = 'SELECT * FROM Referee_table WHERE GameID = ?';
 
-  $vars = [ $_GET['Referee_table'] ];
+  //NOT THIS WAY
+  // $sql = 'SELECT * FROM Referee_table WHERE GameId = ' . $_GET['Game'];
+
+  $vars = [ $_GET['Game'] ];
 }
 
 $stmt = $db->prepare($sql);

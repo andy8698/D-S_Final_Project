@@ -48,6 +48,19 @@
     
     <main class="row">
         <div id="offerApp" class="container">  
+
+          <div class="col col-4">
+            <div v-for="s in Games" v-on:click="selectGame(s)"
+             :class="['Game', {selected: selectedGame && s.id == selectedGame.id}]">
+              <span class="gameName">{{ s.gameName }}</span>
+              <span class="Field">{{ s.Field }}</span>
+              <span class="Time">{{ s.Time }}</span>
+            </div>
+          </div>
+
+          <div class="col col-8" v-if="selectedGame">
+            <h1>Referees for {{ selectedGame.gameName }}</h1>
+
             <table class="table table-bordered table-hover table-striped table-condensed" id="refereeForm">
                   <thead id="table_head">
                       <tr>
@@ -55,6 +68,7 @@
                           <th>Age</th>
                           <th>Grade</th>
                           <th>Skill</th>
+                          <th>Status</th>
                       </tr>
                   </thead>
                   
@@ -64,29 +78,51 @@
                       <td>{{ Referee_table.Age }}</td>
                       <td>{{ Referee_table.Grade }}</td>
                       <td>{{ Referee_table.Skill }}</td>
+                      <td>{{ Referee_table.status }}</td>
+                      <td>
+                        <button type="button" v-on:click="handleEditReferee(Referee_table)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                        <button type="button" v-on:click="postDeleteReferee(Referee_table)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                      </td>
                     </tr>
                   </tbody>
               </table>
   
-            <form v-on:submit.prevent="postNewReferee" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
+            <h3>{{ selectedReferee === null ? "Add " : "Edit " }} Referee</h3>
+            <form v-on:submit.prevent="postReferee" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
               <div class="mb-3">
                 <label for="Name" class="form-label">Name:</label>
-                <input type="text" v-model="Referee_form.Name" class="form-control" id="Name">
+                <input type="text" v-model="Referee_form.Name" class="form-control" id="Name" required="required">
               </div>
               <div class="mb-3">
                 <label for="Age" class="form-label">Age:</label>
-                <input type="number" v-model="Referee_form.Age" class="form-control" id="Age">
+                <input type="number" v-model="Referee_form.Age" class="form-control" id="Age" required="required">
               </div>
               <div class="mb-3">
                 <label for="Grade" class="form-label">Grade:</label>
-                <input type="number" v-model="Referee_form.Grade" class="form-control" id="Grade">
+                <input type="number" v-model="Referee_form.Grade" class="form-control" id="Grade" required="required">
               </div>
               <div class="mb-3">
                 <label for="Skill" class="form-label">Skill:</label>
-                <input type="number" v-model="Referee_form.Skill" class="form-control" id="Skill">
+                <input type="number" v-model="Referee_form.Skill" class="form-control" id="Skill" required="required">
               </div>
-              <button type="submit" class="btn btn-light">Submit</button>
+              <div class="mb-3">
+                <label for="status" class="form-label">Status:</label>
+                <select v-model="Referee_form.status" class="form-select" id="status"  required="required">
+                  <option value="Accepted">Accepted</option>
+                  <option value="Declined">Declined</option>
+                  <!-- <option value="Accepted">Accepted</option> -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-light">{{ selectedReferee === null ? "Add " : "Edit " }} Submit</button>
+              <button type="button" class="btn btn-outline-secondary" 
+                 v-if="selectedReferee"
+                 v-on:click="handleResetEdit">Cancel Edit</button>
             </form>
+            <div class="noReferees" v-if="! Referee_tables.length">
+              <h3>No Referees Assigned</h3>
+            </div>
+
+          </div>
           </div>
     </main>
 
