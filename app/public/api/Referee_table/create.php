@@ -17,11 +17,12 @@ require("class/DbConnection.php");
 $db = DbConnection::getConnection();
 
 $stmt = $db->prepare(
-    'INSERT INTO Referee_table (Name, Age, Grade, Skill, status)
-    VALUES (?, ?, ?, ?, ?)'
+    'INSERT INTO Referee_table (GameID, Name, Age, Grade, Skill, status)
+    VALUES (?, ?, ?, ?, ?, ?)'
 );
 
 $stmt->execute([
+        $_POST['GameID'],
         $_POST['Name'],
         $_POST['Age'],
         $_POST['Grade'],

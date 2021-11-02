@@ -48,12 +48,12 @@
     
     <main class="row">
         <div id="offerApp" class="container">  
-
+          <div class="row align-items-start">
           <div class="col col-4">
             <div v-for="s in Games" v-on:click="selectGame(s)"
              :class="['Game', {selected: selectedGame && s.id == selectedGame.id}]">
-              <span class="gameName">{{ s.gameName }}</span>
-              <span class="Field">{{ s.Field }}</span>
+              <span class="gameName">{{ s.gameName }}</span><br>
+              <span class="Field">{{ s.Field }}</span><br>
               <span class="Time">{{ s.Time }}</span>
             </div>
           </div>
@@ -108,12 +108,14 @@
               <div class="mb-3">
                 <label for="status" class="form-label">Status:</label>
                 <select v-model="Referee_form.status" class="form-select" id="status"  required="required">
+                  <option value="Unassigned">Unassigned</option>
+                  <option value="Assigned">Assigned</option>
+                  <option value="Tentative">Tentative</option>
                   <option value="Accepted">Accepted</option>
-                  <option value="Declined">Declined</option>
                   <!-- <option value="Accepted">Accepted</option> -->
                 </select>
               </div>
-              <button type="submit" class="btn btn-light">{{ selectedReferee === null ? "Add " : "Edit " }} Submit</button>
+              <button type="submit" class="btn btn-light">{{ selectedReferee === null ? "Add " : "Edit " }}</button>
               <button type="button" class="btn btn-outline-secondary" 
                  v-if="selectedReferee"
                  v-on:click="handleResetEdit">Cancel Edit</button>
@@ -121,7 +123,7 @@
             <div class="noReferees" v-if="! Referee_tables.length">
               <h3>No Referees Assigned</h3>
             </div>
-
+          </div>
           </div>
           </div>
     </main>

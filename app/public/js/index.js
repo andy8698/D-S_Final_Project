@@ -26,13 +26,13 @@ const SomeApp = {
             this.Referee_tables = [];
             this.fetchRefereeData(this.selectedGame);
         },
-
+ 
         fetchGameData() {
             fetch('/api/Game/')
             .then( response => response.json() )
-            .then( (responseJson) => {
-                console.log(responseJson);
-                this.Games = responseJson;
+          .then( (responseJson) => {
+              console.log(responseJson);
+              this.Games = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
@@ -40,7 +40,7 @@ const SomeApp = {
         },
         fetchRefereeData(s) {
             console.log("Fetching referee data for ", s);
-            fetch('/api/Referee_table/?Game=' + s.RefereeID)
+            fetch('/api/Referee_table/?Game=' + s.id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -99,14 +99,14 @@ const SomeApp = {
             .then( json => {
                 console.log("Returned from post:", json);
                 this.Referee_tables = json;
-                this.handleEditReferee();
+                this.handleResetEdit();
             })
             .catch( err => {
               alert("Something went horribly wrong.");
             });
         },
         postDeleteReferee(o) {  
-            if ( !confirm("Are you sure you want to delete the referee from " + o.Name + "?") ) {
+            if ( !confirm("Are you sure you want to delete the referee " + o.Name + "?") ) {
                 return;
             }  
             
@@ -140,7 +140,6 @@ const SomeApp = {
     },
     created() {
         this.fetchGameData();
-        this.fetchRefereeData();
     }
   
   }

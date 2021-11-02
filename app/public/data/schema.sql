@@ -43,6 +43,7 @@ INSERT INTO offer(id, studentId, companyName, salary, bonus, offerDate) VALUES
 drop table if exists book_table;
 
 create table book_table (
+    ID int PRIMARY KEY AUTO_INCREMENT,
 	Title VARCHAR(48) NOT NULL, 
 	Author VARCHAR(24) NOT NULL, 
 	Year_Published INTEGER NOT NULL, 
@@ -52,34 +53,52 @@ create table book_table (
 );
 
 
-insert into book_table (Title, Author, Year_Published, Publisher, Page_Count, MSRP) values
-('Harry Potter and the Sorcerers Stone', 'J.K. Rowling', 1998, 'Scholastic', 309, 6.98),
-('The Hobbit', 'J. R. R. Tolkien', 1937, 'Recorded Books', 310, 7.63),
-('Enders Game', 'Orson Scott', 1985, 'Tor Teen', 384, 9.34),
-('Fahrenheit 451', 'Ray Bradbury', 1953, 'Simon & Schuster', 249, 8.49);
+insert into book_table (ID, Title, Author, Year_Published, Publisher, Page_Count, MSRP) values
+(1, 'Harry Potter and the Sorcerers Stone', 'J.K. Rowling', 1998, 'Scholastic', 309, 6.98),
+(2, 'The Hobbit', 'J. R. R. Tolkien', 1937, 'Recorded Books', 310, 7.63),
+(3, 'Enders Game', 'Orson Scott', 1985, 'Tor Teen', 384, 9.34),
+(4, 'Fahrenheit 451', 'Ray Bradbury', 1953, 'Simon & Schuster', 249, 8.49);
+
+-- SELECT * FROM book_table;
 
 -- Final Project
 
-DROP TABLE IF EXISTS Game_table;
-CREATE TABLE Game_table (
-    GameID int PRIMARY KEY AUTO_INCREMENT,
-    refereeId int NOT NULL REFERENCES RefereeID,
-	Field varchar(48) NOT NULL,
-	Time DATE 
+DROP TABLE IF EXISTS Game;
+CREATE TABLE Game (
+	id int PRIMARY KEY AUTO_INCREMENT ,
+    gameName varchar(24),
+    Field varchar(24) NOT NULL,
+    Time date NOT NULL
 );
+
+INSERT INTO Game (id, gameName, Field, Time) VALUES 
+(1, 'Game 1', 'Field 1', 11/8/2021),
+(2, 'Game 2', 'Field 2', 11/9/2021),
+(3, 'Game 3', 'Field 3', 11/10/21);
 
 DROP TABLE IF EXISTS Referee_table;
 CREATE TABLE Referee_table (
     RefereeID int PRIMARY KEY AUTO_INCREMENT,
+    GameID int NOT NULL REFERENCES Game(id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
     Name varchar(24) NOT NULL,
 	Age int NOT NULL,
 	Grade int NOT NULL,
 	Skill int NOT NULL
 );
 
-INSERT INTO Referee_table (RefereeID, Name, Age, Grade, Skill) VALUES 
-(1, 'Tom Gregory', 34, 1, 88),
-(2, 'Beth Barnhart', 34, 4, 58),
-(3, 'Bipin Prabhakar', 43, 2, 78);
+INSERT INTO Referee_table (RefereeID, GameID, Name, Age, Grade, Skill) VALUES 
+(1, 2, 'Tom Gregory', 34, 1, 88),
+(2, 2, 'Beth Barnhart', 34, 4, 58),
+(3, 3, 'Bipin Prabhakar', 43, 2, 78);
+
+ALTER TABLE Referee_table
+ADD COLUMN status enum('Unassigned', 'Assigned', 'Tentative', 'Accepted')
+NOT NULL DEFAULT 'Unassigned';
+
+/** SELECT name, username, MAX(salary) AS maxSalary, COUNT(salary) AS offerCount
+FROM student LEFT OUTER JOIN offer ON student.id = offer.studentId
+GROUP BY usename, name
+; **/
 
 
