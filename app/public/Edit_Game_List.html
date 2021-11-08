@@ -9,7 +9,7 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
  <link href="css/site.css" rel="stylesheet" type="text/css">
 
-  <title>Referee List</title>
+  <title>Edit Game List</title>
 
   <script src="https://unpkg.com/vue@next"></script>
 
@@ -33,13 +33,13 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Assignor.html">Assignor</a>
+              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Game_List.html">Game List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Referee_List.html">Referee List</a>
+                <a class="nav-link" href="Referee_List.html">Referee List</a>
             </li>
           </ul>
         </div>
@@ -47,26 +47,55 @@
     </nav>
     
     <main class="row">
-      <div id="offerApp" class="container">  
-
+        <div id="offerApp" class="container"> 
             <table class="table table-bordered table-hover table-striped table-condensed" id="refereeForm">
                   <thead id="table_head">
                       <tr>
                           <th>Name</th>
-                          <th>Age</th>
-                          <th>Grade</th>
+                          <th>Field</th>
+                          <th>Date</th>
+                          <th>Time</th>
                       </tr>
                   </thead>
                   
                   <tbody>
-                    <tr v-for="Referee_table in Referee_tables">
-                      <td>{{ Referee_table.Name }}</td>
-                      <td>{{ Referee_table.Age }}</td>
-                      <td>{{ Referee_table.Grade }}</td>
+                    <tr v-for="Game in Games">
+                      <td>{{ Game.gameName }}</td>
+                      <td>{{ Game.Field }}</td>
+                      <td>{{ Game.gameDate }}</td>
+                      <td>{{ Game.gameTime }}</td>
+                      <td>
+                        <button type="button" v-on:click="handleEditGame(Game)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                        <button type="button" v-on:click="postDeleteGame(Game)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                      </td>
                     </tr>
                   </tbody>
               </table>
-        </div>
+  
+            <h3>{{ selectedGame === null ? "Add " : "Edit " }} Game</h3>
+            <form v-on:submit.prevent="postGame" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
+              <div class="mb-3">
+                <label for="gameName" class="form-label">Name:</label>
+                <input type="text" v-model="Game_form.gameName" class="form-control" id="gameName" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="Field" class="form-label">Field:</label>
+                <input type="text" v-model="Game_form.Field" class="form-control" id="Field" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="gameDate" class="form-label">Date:</label>
+                <input type="date" v-model="Game_form.gameDate" class="form-control" id="gameDate" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="gameTime" class="form-label">Time:</label>
+                <input type="time" v-model="Game_form.gameTime" class="form-control" id="gameTime" required="required">
+              </div>
+              <button type="submit" class="btn btn-light">{{ selectedGame === null ? "Add " : "Edit " }}</button>
+              <button type="button" class="btn btn-outline-secondary" 
+                 v-if="selectedGame"
+                 v-on:click="handleResetEditGame">Cancel Edit</button>
+            </form>
+          </div>
     </main>
 
     <footer>

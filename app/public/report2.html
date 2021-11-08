@@ -9,7 +9,7 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
  <link href="css/site.css" rel="stylesheet" type="text/css">
 
-  <title>Referee</title>
+  <title>Report</title>
 
   <script src="https://unpkg.com/vue@next"></script>
 
@@ -19,9 +19,8 @@
   <div class="container">
     <header>
         <img src="img/referee_state_association_logo.png" alt="logo" width="600">
-        <!--https://www.soccerindiana.org/assets/58/6/referee_state_association_logo.png-->    
-      </header>
-
+        <!--https://www.soccerindiana.org/assets/58/6/referee_state_association_logo.png-->
+    </header>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -34,10 +33,10 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Assignor.html">Assignor</a>
+              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Referee.html">Referee</a>
+              <a class="nav-link" href="Game_List.html">Game List</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Referee_List.html">Referee List</a>
@@ -48,31 +47,42 @@
     </nav>
     
     <main class="row">
-        <h1> Welcome to ISRA!</h1>
-
-
-        <a href="https://www.soccerindiana.org/assets/58/6/mainfckeditordimension/sharp.jpg" target="_blank"><img src="img/live_with_goals.jpg" alt="Live with Goals" width="400"></a>
-
-        <table>
-          <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
-        </table>
-
-
-    </main>
+    <div id="report" clas="container">
+      
+      <form v-on:submit.prevent="futureGame"> 
+        <label for="future" class="form-label">Find Games w/ Referees w/ Unassigned Status After Following Date:</label>
+        <input type="date" v-model="Game_form.gameDate">  
+        <button type="submit" class="btn btn-light btn-sm">Search</button>       
+      </form>
+    
+    <table class="table table-bordered table-striped table-hover table-condensed">
+      <thead>
+        <tr>
+            <th>Game Name</th>
+            <th>Field</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Referee Name</th>               
+            <th>Status</th>
+          </tr>	
+      </thead>
+      <tbody>
+        <tr v-for="Game in Games">
+            <td>{{ Game.gameName }}</td>     
+            <td>{{ Game.Field }}</td> 
+            <td>{{ Game.gameDate }}</td>                            
+            <td>{{ Game.gameTime }}</td>
+            <td>{{ Game.Name }}</td>
+            <td>{{ Game.status }}</td>
+        </tr>
+    </tbody>
+    </table>
+    <div id="download"> 
+      <button type="button" v-on:click="downloadGame">Download Table</button>
+    </div>
+     
+  </div>
+  </main>
 
     <footer>
         <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
@@ -83,7 +93,8 @@
   <!--  Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-  <script src="js/index.js"></script>
+  <script src="js/report.js"></script>
+
 
 </body>
 </html>

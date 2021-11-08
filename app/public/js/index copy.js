@@ -3,7 +3,6 @@ const SomeApp = {
       return {
         Games: [],
         selectedGame: null,
-        Game_form: {},
         selectedReferee: null,
         Referee_tables: [],
         Referee_form: {}
@@ -19,7 +18,14 @@ const SomeApp = {
             const d = new Intl.NumberFormat("en-US").format(n);
             return "$ " + d;
         },
-        
+        selectGame(s) {
+            if (s == this.selectedGame) {
+                return;
+            }
+            this.selectedGame = s;
+            this.Referee_tables = [];
+            this.fetchRefereeData(this.selectedGame);
+        },
  
         fetchGameData() {
             fetch('/api/Game/')
@@ -32,99 +38,9 @@ const SomeApp = {
                 console.error(err);
             })
         },
-
-        postNewGame(evt) {
-            console.log("Posting:", this.Game_form);
-        
-            fetch('api/Game/create.php', {
-                method:'POST',
-                body: JSON.stringify(this.Game_form),
-                headers: {
-                  "Content-Type": "application/json; charset=utf-8"
-                }
-              })
-              .then( response => response.json() )
-              .then( json => {
-                  console.log("Returned from post:", json);
-                  this.Games = json;
-                  this.handleResetEditGame();
-              })
-              .catch( err => {
-                alert("Something went horribly wrong.");
-              });
-  
-          },
-
-
-        postGame(evt) {
-                console.log ("Test:", this.selectedGame);
-                if (this.selectedGame) {
-                    this.postEditGame(evt);
-                } else {
-                    this.postNewGame(evt);
-                }
-            },
-
-        postEditGame(evt) {
-            this.Game_form.id = this.selectedGame.id;       
-
-            console.log("Editing")
-            fetch('api/Game/update.php', {
-                method:'POST',
-                body: JSON.stringify(this.Game_form),
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                    }
-                })
-                .then( response => response.json() )
-                .then( json => {
-                console.log("Returned from post:", json);
-                // TODO: test a result was returned!
-                this.Games = json;
-
-                // reset the form
-                this.handleResetEditGame();
-                });
-            },
-
-            postDeleteGame(g) {  
-                if ( !confirm("Are you sure you want to delete the game " + g.gameName + "?") ) {
-                    return;
-                }  
-
-                console.log("Delete!", g);
-
-                fetch('api/Game/delete.php', {
-                    method:'POST',
-                    body: JSON.stringify(g),
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8"
-                    }
-                    })
-                    .then( response => response.json() )
-                    .then( json => {
-                    console.log("Returned from post:", json);
-                    // TODO: test a result was returned!
-                    this.Games = json;
-
-                    // reset the form
-                    this.handleResetEditGame();
-                    });
-                },
-
-    
-          handleEditGame(Game) {
-            console.log("selecting", Game);
-            this.selectedGame = Game;
-            this.Game_form = Object.assign({}, this.selectedGame);
-          },
-          handleResetEditGame() {
-            this.selectedGame = null;
-            this.Game_form = {};
-          },
-
-        fetchRefereeData() {
-            fetch('/api/Referee_table/')
+        fetchRefereeData(s) {
+            console.log("Fetching referee data for ", s);
+            fetch('/api/Referee_table/?Game=' + s.id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -147,6 +63,7 @@ const SomeApp = {
         },
         postEditReferee(evt) {
             this.Referee_form.RefereeID = this.selectedReferee.RefereeID;
+            this.Referee_form.GameID = this.selectedGame.id;        
             
             console.log("Editing!", this.Referee_form);
     
@@ -168,6 +85,7 @@ const SomeApp = {
               });
           },
         postNewReferee(evt) {
+            this.Referee_form.GameID = this.selectedGame.id;
             console.log("Posting!", this.Referee_form);
 
             fetch('api/Referee_table/create.php', {
@@ -221,7 +139,6 @@ const SomeApp = {
         }
     },
     created() {
-        this.fetchRefereeData();
         this.fetchGameData();
     }
   

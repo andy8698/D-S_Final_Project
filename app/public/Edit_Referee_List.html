@@ -9,7 +9,7 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
  <link href="css/site.css" rel="stylesheet" type="text/css">
 
-  <title>Referee List</title>
+  <title>Edit Referee List</title>
 
   <script src="https://unpkg.com/vue@next"></script>
 
@@ -33,13 +33,13 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Assignor.html">Assignor</a>
+              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Game_List.html">Game List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Referee_List.html">Referee List</a>
+                <a class="nav-link" href="Referee_List.html">Referee List</a>
             </li>
           </ul>
         </div>
@@ -47,14 +47,14 @@
     </nav>
     
     <main class="row">
-      <div id="offerApp" class="container">  
-
+        <div id="offerApp" class="container"> 
             <table class="table table-bordered table-hover table-striped table-condensed" id="refereeForm">
                   <thead id="table_head">
                       <tr>
                           <th>Name</th>
                           <th>Age</th>
                           <th>Grade</th>
+                          <th>Skill</th>
                       </tr>
                   </thead>
                   
@@ -63,10 +63,45 @@
                       <td>{{ Referee_table.Name }}</td>
                       <td>{{ Referee_table.Age }}</td>
                       <td>{{ Referee_table.Grade }}</td>
+                      <td>{{ Referee_table.Skill }}</td>
+                      <td>
+                        <button type="button" v-on:click="handleEditReferee(Referee_table)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                        <button type="button" v-on:click="postDeleteReferee(Referee_table)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                      </td>
                     </tr>
                   </tbody>
               </table>
-        </div>
+  
+            <h3>{{ selectedReferee === null ? "Add " : "Edit " }} Referee</h3>
+            <form v-on:submit.prevent="postReferee" class="col-xs 12 col-sm-8 col-md-6 col-lg-6">
+              <div class="mb-3">
+                <label for="Name" class="form-label">Name:</label>
+                <input type="text" v-model="Referee_form.Name" class="form-control" id="Name" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="Age" class="form-label">Age:</label>
+                <input type="number" v-model="Referee_form.Age" class="form-control" id="Age" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="Grade" class="form-label">Grade:</label>
+                <select v-model="Referee_form.Grade" class="form-select" id="Grade"  required="required">
+                  <option value="FIFA">FIFA</option>
+                  <option value="P.R.O.">P.R.O.</option>
+                  <option value="National">National</option>
+                  <option value="Regional">Regional</option>
+                  <option value="Grassroots">Grassroots</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="Skill" class="form-label">Skill:</label>
+                <input type="number" v-model="Referee_form.Skill" class="form-control" id="Skill" required="required">
+              </div>
+              <button type="submit" class="btn btn-light">{{ selectedReferee === null ? "Add " : "Edit " }}</button>
+              <button type="button" class="btn btn-outline-secondary" 
+                 v-if="selectedReferee"
+                 v-on:click="handleResetEdit">Cancel Edit</button>
+            </form>
+          </div>
     </main>
 
     <footer>
