@@ -17,16 +17,16 @@ require("class/DbConnection.php");
 $db = DbConnection::getConnection();
 
 $stmt = $db->prepare(
-    'INSERT INTO Referee_table (Name, Age, Grade, Skill)
+    'INSERT INTO Game (gameName, Field, gameDate, gameTime)
     VALUES (?, ?, ?, ?)'
 );
 
 $stmt->execute([
-        $_POST['Name'],
-        $_POST['Age'],
-        $_POST['Grade'],
-        $_POST['Skill']
+        $_POST['gameName'],
+        $_POST['Field'],
+        $_POST['gameDate'],
+        $_POST['gameTime']
     ]);
 
 header('HTTP/1.1 303 See Other');
-header('Location: ../Referee_table/');
+header('Location: ../Game/');

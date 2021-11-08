@@ -100,6 +100,29 @@ fieldset{
             
 }
 
+#noref{
+    color: deeppink;
+}
+
+.Game {
+    margin: 10px 2px;
+    padding: 4px;
+    border: 1px solid gray;
+    background-color: darkred;
+}
+
+.selected {
+    background-color: rgb(226, 81, 55);
+}
+
+.gameName {
+    font-weight:bold;
+}
+
+.Field {
+    color:#999;
+}
+
 /* table sort */
 
 th[role=columnheader]:not(.no-sort) {

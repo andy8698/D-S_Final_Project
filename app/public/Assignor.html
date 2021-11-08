@@ -33,16 +33,13 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="assignor.html">Assignor View</a>
+              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="assignor.html">Games</a>
+              <a class="nav-link" href="Game_List.html">Game List</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="assignor.html">Referee</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="assignor.html">Assignments</a>
+              <a class="nav-link" href="Referee_List.html">Referee List</a>
             </li>
           </ul>
         </div>
@@ -50,43 +47,19 @@
     </nav>
     
     <main class="row">
-        <h1> Upcoming Games</h1>
-
+        <a href="Assignment.html"><h1> Assignment</h1></a>
+        <br><br><br>
+        <a href="Edit_Referee_List.html"><h1> Edit Referee List</h1></a>
+        <br><br><br>
+        <a href="Edit_Game_List.html"><h1> Edit Game List</h1></a>
+        <br><br><br>
+        <h1>Reports</h1><br><br>
+        <button type="button" class="btn btn-block btn-lg btn-outline-info"><a href="report1.html">All Games Assigned to a Referee in a Given Date Rage</a></button>
+        <br><br>
+        <button  type="button" class="btn btn-block btn-lg btn-outline-info"><a href="report2.html">All Future Games with No Referee Assigned</a></button>
     
+     </main>
 
-    <table id="bookTable" class="bookTable" v-for="offer in offers">
-      <thead>
-        <tr>
-          <th scope="col">Game</th>
-          <th scope="col">Field</th>
-          <th scope="col">Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">IU @ Purdue</th>
-          <td>Folk Field</td>
-          <td>8:00 pm</td>
-        </tr>
-        <tr>
-          <th scope="row">IU @ Michigan</th>
-          <td>UM Soccer Stadium</td>
-          <td>8:00 pm</td>
-        </tr>
-        <tr>
-          <th scope="row">IU vs. Ball State</th>
-          <td>Bill Armstrong Staidum</td>
-          <td>7:00 pm</td>
-        </tr>
-        <tr>
-          <th scope="row">IU vs. Illinois</th>
-          <td>Bill Armstrong Stadium</td>
-          <td>12:00 pm</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </main>
 
     <footer>
         <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
@@ -96,11 +69,6 @@
 
   <!--  Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-
-  <script src="js/randomuser.js"></script>
-
-  <script>dayjs().format()</script>
 
   <script src="js/index.js"></script>
 

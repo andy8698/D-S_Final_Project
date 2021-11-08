@@ -9,7 +9,7 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
  <link href="css/site.css" rel="stylesheet" type="text/css">
 
-  <title>Referee List</title>
+  <title>Report</title>
 
   <script src="https://unpkg.com/vue@next"></script>
 
@@ -33,13 +33,13 @@
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Assignor.html">Assignor</a>
+              <a class="nav-link active" aria-current="page" href="Assignor.html">Assignor</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Game_List.html">Game List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Referee_List.html">Referee List</a>
+              <a class="nav-link" href="Referee_List.html">Referee List</a>
             </li>
           </ul>
         </div>
@@ -47,27 +47,46 @@
     </nav>
     
     <main class="row">
-      <div id="offerApp" class="container">  
-
-            <table class="table table-bordered table-hover table-striped table-condensed" id="refereeForm">
-                  <thead id="table_head">
-                      <tr>
-                          <th>Name</th>
-                          <th>Age</th>
-                          <th>Grade</th>
-                      </tr>
-                  </thead>
-                  
-                  <tbody>
-                    <tr v-for="Referee_table in Referee_tables">
-                      <td>{{ Referee_table.Name }}</td>
-                      <td>{{ Referee_table.Age }}</td>
-                      <td>{{ Referee_table.Grade }}</td>
-                    </tr>
-                  </tbody>
-              </table>
-        </div>
-    </main>
+      
+      <h1>Find all games assigned to a referee in a given date range</h1>
+      <div id="report" class="container">
+    <form v-on:submit.prevent="dateRange">
+        <label for="referees">Select a referee: </label><br>
+        <select v-model ="gameReports.Name">
+          <option v-for = "Referee_table in Referee_tables" >{{Referee_table.Name}}</option>
+        </select>    
+        <br><label for="begin">Start Date: </label><br>
+          <input type="date"  v-model ="gameReports.begin">
+        <br><label for="end">End Date: </label><br>
+         <input type="date"  v-model = "gameReports.end">
+        <br><br><button type="submit" class="btn btn-light btn-sm">Search Games</button>                   
+  </form>
+    
+    <table class="table table-bordered table-striped table-hover table-condensed">
+      <thead>
+        <tr>
+            <th>Referee Name</th>  
+            <th>Game Name</th>
+            <th>Field</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>	
+      </thead>
+      <tbody>
+        <tr v-for="Game in Games">
+            <td>{{ Game.Name }}</td>
+            <td>{{ Game.gameName }}</td>     
+            <td>{{ Game.Field }}</td> 
+            <td>{{ Game.gameDate }}</td>                            
+            <td>{{ Game.gameTime }}</td>
+        </tr>
+    </tbody>
+    </table>
+    <div id="download"> 
+      <button type="button" v-on:click="downloadGame">Download Table</button>
+    </div>
+  </div>
+  </main>
 
     <footer>
         <span>Copyright© 2021 MSIS Red Cohort Team 33</span>
@@ -78,14 +97,8 @@
   <!--  Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-  <script src="js/index.js"></script>
+  <script src="js/report.js"></script>
 
-  <script src="js/tablesort.min.js"></script>
-  
-  <script>
-    // Tablesort plug in from https://github.com/tristen/tablesort //
-    new Tablesort(document.getElementById('refereeForm'));
-  </script>
 
 </body>
 </html>
