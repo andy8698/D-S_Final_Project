@@ -23,12 +23,12 @@ $stmt = $db->prepare(
         g.gameDate, 
         g.gameTime 
         FROM Game g, Referee_table r, assignment a 
-        WHERE r.RefereeID = a.refereeid AND g.id = a.gameid AND 
+        WHERE r.RefereeID = a.refereeid and g.id = a.gameid and 
               g.gameDate > ? and g.gameDate < ? and r.Name = ? and a.status= "Assigned"');
 
 $stmt->execute([
-  $_POST['start_date'],
-  $_POST['end_date'],
+  $_POST['begin'],
+  $_POST['end'],
   $_POST['Name'],
 
  ]);
@@ -41,10 +41,10 @@ $stmt->execute([
   
     foreach($Games as $g) {
       echo $g['Name']. ','
-                .$g['gameName'] . ','
-                .$g['Field'] . ','
-                .$g['gameDate'] .','
-                .$g['gameTime']."\r\n";
+          .$g['gameName'] . ','
+          .$g['Field'] . ','
+          .$g['gameDate'] .','
+          .$g['gameTime']."\r\n";
     }
   
   } 
@@ -52,7 +52,7 @@ $stmt->execute([
 
   
  // Step 3: Convert to JSON
- $json = json_encode($games, JSON_PRETTY_PRINT);
+ $json = json_encode($Games, JSON_PRETTY_PRINT);
  
  // Step 4: Output
  header('Content-Type: application/json');

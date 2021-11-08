@@ -47,48 +47,44 @@
     </nav>
     
     <main class="row">
-    <div id="report" clas="container">
       
-      <h1>Referees by date range</h1>
+      <h1>Find all games assigned to a referee in a given date range</h1>
+      <div id="report" class="container">
     <form v-on:submit.prevent="dateRange">
-        <label for="referees">Choose a referee name: </label><br>
+        <label for="referees">Select a referee: </label><br>
         <select v-model ="gameReports.Name">
-          <option> Select</option>
-          <option v-for = "r in referees" >{{r.Name}}</option>
+          <option v-for = "Referee_table in Referee_tables" >{{Referee_table.Name}}</option>
         </select>    
-        <br><label for="startDate">Start Date: </label><br>
-          <input type="date"  v-model ="gameReportsForm.start_date">
-        <br><label for="endDate">End Date: </label><br>
-         <input type="date"  v-model = "gameReportsForm.end_date">
-        <br><br><button type="submit" class="btn btn-primary btn-sm">Search Games</button>                   
+        <br><label for="begin">Start Date: </label><br>
+          <input type="date"  v-model ="gameReports.begin">
+        <br><label for="end">End Date: </label><br>
+         <input type="date"  v-model = "gameReports.end">
+        <br><br><button type="submit" class="btn btn-light btn-sm">Search Games</button>                   
   </form>
     
     <table class="table table-bordered table-striped table-hover table-condensed">
       <thead>
         <tr>
+            <th>Referee Name</th>  
             <th>Game Name</th>
             <th>Field</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Referee Name</th>               
-            <th>Status</th>
           </tr>	
       </thead>
       <tbody>
         <tr v-for="Game in Games">
+            <td>{{ Game.Name }}</td>
             <td>{{ Game.gameName }}</td>     
             <td>{{ Game.Field }}</td> 
             <td>{{ Game.gameDate }}</td>                            
             <td>{{ Game.gameTime }}</td>
-            <td>{{ Game.Name }}</td>
-            <td>{{ Game.status }}</td>
         </tr>
     </tbody>
     </table>
     <div id="download"> 
       <button type="button" v-on:click="downloadGame">Download Table</button>
     </div>
-     
   </div>
   </main>
 
